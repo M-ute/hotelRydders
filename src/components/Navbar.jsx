@@ -36,8 +36,9 @@ const Navbar = () => {
         {/*-----------MOBILE MENU---------*/}
         <div className={`md:hidden ${showMobileMenu ? 'fixed w-full' : 'hidden'} top-0 right-0 bottom-0 overflow-hidden
           transition-all duration-300 ease-in-out`}>
-            <div className="flex justify-end cursor-pointer px-3 py-5 bg-gray-100">
-                <img onClick={() => setShowMobileMenu(false)} src={assets.cross_icon} alt="" className="w-8 p-1 border-2 border-red-600 rounded-full " />
+            <div className="flex justify-between cursor-pointer px-4 py-5 bg-gray-500">
+                <div className="flex items-start px-4 text-2xl text-gray-100">MENU</div>
+                <img onClick={() => setShowMobileMenu(false)} src={assets.cross_icon} alt="" className="w-8 p-1 border-2 border-gray-100 rounded-full " />
             </div>
             <ul className="flex flex-col gap-4 items-center  text-gray-800 text-center text-lg 
             font-medium px-5 py-1 bg-gray-100">
