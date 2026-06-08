@@ -25,8 +25,9 @@ const Navbar = () => {
                     <a href="#Header" className="cursor-pointer hover:text-gray-500">Home</a>
                     <a href="#About" className="cursor-pointer hover:text-gray-500">About</a>
                     <a href="#Services" className="cursor-pointer hover:text-gray-500">Services</a>
-                    <a href="#Contact" className="cursor-pointer hover:text-gray-500">Contact</a>
                     <a href="#Testimonials" className="cursor-pointer hover:text-gray-500">Testimonials</a>
+                    <a href="#Contact" className="cursor-pointer hover:text-gray-500">Contact</a>
+
                 </ul>
             <button className="hidden text-white md:block bg-amber-500
              hover:bg-white hover:text-black px-8 py-2 rounded-full">Sign Up
@@ -45,8 +46,8 @@ const Navbar = () => {
                 <a onClick={() => setShowMobileMenu(false)} href="#Home" className=" px-4 py-2 rounded-full inline-block">Home</a>
                 <a onClick={() => setShowMobileMenu(false)} href="#About" className=" px-4 py-2 rounded-full inline-block">About</a>
                 <a onClick={() => setShowMobileMenu(false)} href="#Services" className=" px-4 py-2 rounded-full inline-block ">Services</a>
-                <a onClick={() => setShowMobileMenu(false)} href="#Contact" className=" px-4 py-2 rounded-full inline-block">Contact</a>
                 <a onClick={() => setShowMobileMenu(false)} href="#Testimonials" className=" px-4 py-2 rounded-full inline-block">Testimonials</a>
+                <a onClick={() => setShowMobileMenu(false)} href="#Contact" className=" px-4 py-2 rounded-full inline-block">Contact</a>
 
             </ul>
         </div>
