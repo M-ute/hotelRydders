@@ -1,8 +1,8 @@
 import { useState } from "react";
 
 const Contact = () => {
-
-const [result, setResult] = useState("");
+  const [result, setResult] = useState("");
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const onSubmit = async (event) => {
     event.preventDefault();
@@ -11,48 +11,59 @@ const [result, setResult] = useState("");
 
     const response = await fetch("https://api.web3forms.com/submit", {
       method: "POST",
-      body: formData
+      body: formData,
     });
 
     const data = await response.json();
-    setResult(data.success ? "Message Sent Successfully" : "Error");
+    if (data.success) {
+      setResult("Message Sent Successfully");
+      setIsSubmitted(true);
+      event.target.reset(); // clears the form fields
+    } else {
+      setResult("Error, please try again.");
+    }
   };
-
 
   return (
     <div className="text-center p-6 py-20 lg:px-32 w-full overflow-hidden" id="Contact">
-        <h1 className="text-2xl sm:text-4xl font-bold mb-2 text-center"
-        >Contact <span className="underline underline-offset-4 decoration-1 under 
-        font-light">Us Now</span></h1>
-        <p className="text-gray-500 max-w-80 text-center mb-12 mx-auto">
-            Ready to Make a Move? Let's Build The Future Together</p>
+      <h1 className="text-2xl sm:text-4xl font-bold mb-2 text-center">
+        Contact <span className="underline underline-offset-4 decoration-1 under font-light">Us Now</span>
+      </h1>
+      <p className="text-gray-500 max-w-80 text-center mb-12 mx-auto">
+        Ready to Make a Move? Let's Build The Future Together
+      </p>
 
+      <form className="w-full max-w-5xl mx-auto pt-4" onSubmit={onSubmit}>
+        <div className="flex flex-col md:flex-row gap-2">
+          <div className="w-full md:w-1/2 mx-auto flex flex-col gap-4 text-left">
+            <input type="text" placeholder="Your Name" name="Name"
+              className="w-full border border-gray-300 rounded-2xl py-3 px-4 mt-2" required />
+          </div>
+          <div className="w-full md:w-1/2 mx-auto flex flex-col gap-4 text-left">
+            <input type="email" placeholder="Your Email" name="Email"
+              className="w-full border border-gray-300 rounded-2xl py-3 px-4 mt-2" required />
+          </div>
+        </div>
 
-        <form className="w-full max-w-5xl mx-auto pt-4" onSubmit={onSubmit}>
-            <div className="flex flex-col md:flex-row gap-2">
-                <div className="w-full md:w-1/2 mx-auto flex flex-col gap-4 text-left">
-                    <input type="text" placeholder="Your Name" name="Name" className="w-full border border-gray-300
-                    rounded-2xl py-3 px-4 mt-2" required />
-                </div>
-                <div className="w-full md:w-1/2 mx-auto flex flex-col gap-4 text-left">
-                    <input type="email" placeholder="Your Email" name="Email" className="w-full border border-gray-300
-                    rounded-2xl py-3 px-4 mt-2" required />
-                </div>
-            </div>
+        <div>
+          <textarea placeholder="Enter Your Message" name="Message"
+            className="w-full border border-gray-300 rounded-2xl py-3 px-4 mt-4 h-32 resize-none"
+            rows="5" required></textarea>
+        </div>
 
-            <div className>
-                <textarea placeholder="Enter Your Message" name="Message" className="w-full border border-gray-300
-                rounded-2xl py-3 px-4 mt-4 h-32 resize-none" rows="5" required></textarea>
-            </div>
-            <button type="submit" className="bg-blue-700 hover:bg-black text-sm md:text-lg 
-             hover:text-white text-white px-20 py-5 rounded-2xl mt-4">Send Message</button>
-             <p>{result}</p>
-             <p className="text-gray-500 text-sm mt-2">Messages will be responded within 24 hours</p>
-
-        </form>
-
+        <button
+          type="submit"
+          disabled={isSubmitted}
+          className="bg-blue-700 hover:bg-black text-sm md:text-lg hover:text-white 
+            text-white px-20 py-5 rounded-2xl mt-4 disabled:opacity-60 disabled:cursor-not-allowed"
+        >
+          {isSubmitted ? "Message Sent ✓" : "Send Message"}
+        </button>
+        <p className={result.includes("Error") ? "text-red-500 mt-2" : "text-green-600 mt-2"}>{result}</p>
+        <p className="text-gray-500 text-sm mt-2">Messages sent will be responded to within 24 hours</p>
+      </form>
     </div>
-  )
-}
+  );
+};
 
-export default Contact
+export default Contact;
