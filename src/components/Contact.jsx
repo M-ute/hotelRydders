@@ -22,8 +22,7 @@ const [result, setResult] = useState("");
     event.target.reset();
     
     
-  };    event.target.reset();
-
+  };
 
 
   return (
