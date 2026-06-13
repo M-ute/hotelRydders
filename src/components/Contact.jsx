@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { toast } from "react-toastify";
+import {motion} from "motion/react"
 
 const Contact = () => {
 
@@ -26,7 +27,13 @@ const [result, setResult] = useState("");
 
 
   return (
-    <div className="text-center p-6 py-20 lg:px-32 w-full overflow-hidden" id="Contact">
+    <motion.div
+    initial={{opacity: 0, y: 200}}
+    transition={{duration: 1}}
+    whileInView={{opacity: 1, y:  0 }}
+    viewport={{once: true}}
+    className="text-center p-6 py-20 lg:px-32 w-full overflow-hidden" id="Contact">
+        
         <h1 className="text-2xl sm:text-4xl font-bold mb-2 text-center"
         >Contact <span className="underline underline-offset-4 decoration-1 under 
         font-light">Us Now</span></h1>
@@ -50,14 +57,20 @@ const [result, setResult] = useState("");
                 <textarea placeholder="Enter Your Message" name="Message" className="w-full border border-gray-300
                 rounded-2xl py-3 px-4 mt-4 h-32 resize-none" rows="5" required></textarea>
             </div>
-            <button type="submit" className="bg-blue-700 hover:bg-black text-sm md:text-lg 
-             hover:text-white text-white px-20 py-5 rounded-2xl mt-4">{result ? result : "Send Message"}</button>
+            <motion.button 
+            initial={{opacity: 0, y : -30}}
+            transition={{duration: 0.5}}
+            whileInView={{opacity: 1, y:  0 }}
+            viewport={{once: false}}
+            type="submit" className="bg-blue-700 hover:bg-black text-sm md:text-lg 
+             hover:text-white text-white px-20 py-5 rounded-2xl mt-4">{result ? result : "Send Message"}
+            </motion.button>
              <p className="text-gray-500 text-sm mt-2">Messages sent will be responded to within 24 hours</p>
 
         </form>
 
-    </div>
+    </motion.div>
   )
 }
 
-export default Contact
+export default Contact;

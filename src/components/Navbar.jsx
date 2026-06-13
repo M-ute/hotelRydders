@@ -29,9 +29,7 @@ const Navbar = () => {
                     <a href="#Contact" className="cursor-pointer hover:text-gray-500">Contact</a>
 
                 </ul>
-            <button className="hidden text-white md:block bg-amber-500
-             hover:bg-white hover:text-black px-8 py-2 rounded-full">Sign Up
-            </button>
+            
             <img onClick={() => setShowMobileMenu(true)} src={assets.menu_icon} alt="" className="md:hidden w-7 cursor-pointer " />
         </div>
         {/*-----------MOBILE MENU---------*/}
